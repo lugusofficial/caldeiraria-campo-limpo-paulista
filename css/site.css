@@ -22,7 +22,7 @@
 /* hero: video da fabrica ocupando a secao inteira, texto claro sobre um veu escuro */
 .hero--video {
   position: relative; overflow: hidden; isolation: isolate;
-  min-height: clamp(32rem, 84svh, 48rem);
+  min-height: max(32rem, calc(100svh - 5rem));
   display: grid; align-items: center;
   padding-block: var(--space-8);
   background: var(--color-text);
@@ -32,7 +32,6 @@
    cima do video. O botao some e o js/hero.js troca o video pelo webp animado. */
 .hero__video::-webkit-media-controls,
 .hero__video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
-@media (max-width: 47.99em) { .hero--video { min-height: max(32rem, calc(100svh - 5rem)); } }
 .hero__veu { position: absolute; inset: 0; z-index: -1; background: color-mix(in srgb, var(--color-text) 58%, transparent); }
 .hero__grid { width: min(100% - 2 * var(--gutter), var(--container)); margin-inline: auto; }
 .hero__text { max-width: 44rem; color: var(--color-bg); }
@@ -124,6 +123,13 @@
 .lista { display: grid; gap: var(--space-3); }
 .lista li { display: grid; grid-template-columns: 1.5rem 1fr; }
 .lista li::before { content: ""; width: 0.5rem; height: 0.5rem; margin-top: 0.55em; border-radius: var(--radius-pill); background: var(--color-accent); }
+
+/* aplicacoes: quatro colunas abertas com um fio em cima */
+.aplic { display: grid; gap: var(--space-6); }
+.aplic li { display: grid; gap: var(--space-2); align-content: start; padding-top: var(--space-4); border-top: 1px solid var(--color-rule); }
+.aplic p { color: var(--color-muted); }
+@media (min-width: 40em) { .aplic { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 64em) { .aplic { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 
 /* location: location-split-map */
 .mapa img { width: 100%; border-radius: var(--radius-lg); }

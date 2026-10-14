@@ -19,5 +19,4 @@
   </g>
   <g font-size="18" fill="#111111"><text x="306" y="214" font-weight="600">Nossa fábrica</text><text x="306" y="238" font-size="15" fill="#50565C">Campo Limpo Paulista</text></g>
   <g font-size="13" fill="#50565C"><text x="292" y="370" transform="rotate(-52 292 370)">Anhanguera e Bandeirantes</text><text x="452" y="300" transform="rotate(-82 452 300)">Fernão Dias</text></g>
-  <g transform="translate(40 440)" fill="#50565C" font-size="13"><path d="M0 0h70" stroke="#50565C" stroke-width="2"/><path d="M0 -5v10M70 -5v10" stroke="#50565C" stroke-width="2"/><text x="80" y="5">10 km</text></g>
 </svg>

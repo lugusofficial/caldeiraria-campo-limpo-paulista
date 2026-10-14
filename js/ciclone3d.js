@@ -107,7 +107,7 @@
       for (var i = 0; i < n; i++) { dados.push({ t: Math.random(), j: Math.random(), k: Math.random() }); }
       return { geo: geo, dados: dados };
     }
-    var po = nuvem(560, 0x6e5a46, 0.09);
+    var po = nuvem(560, 0x50565c, 0.09);
     var ar = nuvem(360, 0x2f7fd0, 0.085);
     var ENTRADA = Math.PI / 2;
 
