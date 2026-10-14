@@ -1,0 +1,181 @@
+/* Section styles for this site. Base rules and tokens live in base.css and tokens.css: use the custom properties, never raw values. */
+/* Style surfaces: No cards. Thin 1px rules on the neutral scale. The accent appears only on the primary CTA and one highlight per screen. */
+/* Decorative effect: none in the layout. One keyframes block (surgir) drives the scroll reveal and the hero arrow. */
+
+/* Marca: simbolo do ciclone mais o nome em texto */
+.brand { display: inline-flex; align-items: center; gap: var(--space-3); }
+.brand__simbolo { width: auto; height: 2.75rem; border-radius: var(--radius-sm); flex: none; }
+.brand__nome { display: grid; line-height: var(--leading-tight); }
+.brand__sub { font-family: var(--font-body); font-size: var(--step--1); font-weight: var(--weight-body); letter-spacing: 0.04em; color: var(--color-accent); }
+.site-footer .brand__nome { color: var(--color-text); }
+.site-nav a { white-space: nowrap; }
+.site-nav a[aria-current="page"] { color: var(--color-accent); text-decoration: underline; text-underline-offset: 0.35em; }
+
+/* Cabecalho: com o simbolo e quatro links o menu fica recolhido ate 64em */
+@media (min-width: 48em) and (max-width: 63.99em) {
+  .nav-toggle { display: inline-flex; }
+  .site-nav { display: none; width: 100%; padding-top: var(--space-4); }
+  .site-nav[data-open="true"] { display: block; }
+  .site-nav ul { flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-4); }
+}
+
+/* hero: video da fabrica ocupando a secao inteira, texto claro sobre um veu escuro */
+.hero--video {
+  position: relative; overflow: hidden; isolation: isolate;
+  min-height: clamp(32rem, 84svh, 48rem);
+  display: grid; align-items: center;
+  padding-block: var(--space-8);
+  background: var(--color-text);
+}
+.hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+/* Sem autoplay (economia de bateria do iPhone) o Safari desenha um play por
+   cima do video. O botao some e o js/hero.js troca o video pelo webp animado. */
+.hero__video::-webkit-media-controls,
+.hero__video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+@media (max-width: 47.99em) { .hero--video { min-height: max(32rem, calc(100svh - 5rem)); } }
+.hero__veu { position: absolute; inset: 0; z-index: -1; background: color-mix(in srgb, var(--color-text) 58%, transparent); }
+.hero__grid { width: min(100% - 2 * var(--gutter), var(--container)); margin-inline: auto; }
+.hero__text { max-width: 44rem; color: var(--color-bg); }
+.hero__text h1 { max-width: 16ch; color: var(--color-bg); }
+.hero__text .label, .hero__text .lead { color: var(--color-surface); }
+.hero__text .btn--primary { background: var(--color-bg); color: var(--color-accent); }
+.hero__text .btn--primary:hover { background: var(--color-surface); opacity: 1; }
+.hero__text .btn--link { color: var(--color-bg); }
+.hero__text .btn--link:hover { color: var(--color-surface); }
+.hero__seta {
+  position: absolute; left: 50%; bottom: var(--space-5); transform: translateX(-50%);
+  display: grid; place-items: center; width: 3rem; height: 3rem; border-radius: var(--radius-pill);
+  color: var(--color-bg); background: color-mix(in srgb, var(--color-text) 45%, transparent);
+}
+.hero__seta svg { width: 1.5rem; height: 1.5rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* topo das paginas internas: texto a esquerda, foto grande a direita */
+.topo { padding-block: var(--space-7) var(--space-8); }
+.topo__grid { display: grid; gap: var(--space-7); align-items: center; }
+.topo__texto h1 { max-width: 14ch; font-size: var(--step-4); }
+.topo__foto img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius-lg); }
+@media (min-width: 56em) { .topo__grid { grid-template-columns: 5fr 6fr; gap: var(--space-8); } }
+
+/* linhas: as duas frentes lado a lado, so com espaco entre elas */
+.linhas__intro .lead { max-width: 40ch; }
+.linhas { display: grid; gap: var(--space-8); }
+.linha { display: grid; gap: var(--space-4); align-content: start; }
+.linha__link { display: grid; gap: var(--space-4); text-decoration: none; }
+.linha__link img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: var(--radius-lg); transition: transform 400ms ease; }
+.linha__link:hover img { transform: translateY(calc(-1 * var(--space-2))); }
+.linha__nome { display: inline-flex; align-items: center; gap: var(--space-3); font-family: var(--font-display); font-weight: var(--weight-display); font-size: var(--step-2); line-height: var(--leading-tight); }
+.linha__nome .icon { transition: transform 200ms ease; }
+.linha__link:hover .linha__nome { color: var(--color-accent); }
+.linha__link:hover .linha__nome .icon { transform: translateX(var(--space-2)); }
+.linha p { color: var(--color-muted); max-width: 46ch; }
+@media (min-width: 48em) { .linhas { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* galeria: um destaque grande e dois menores ao lado */
+.galeria__grid { display: grid; gap: var(--space-6); }
+.galeria__item { display: grid; gap: var(--space-3); align-content: start; }
+.galeria__item img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; transition: transform 400ms ease; }
+.galeria__item:hover img { transform: scale(1.02); }
+.galeria__item figcaption { font-size: var(--step--1); color: var(--color-muted); }
+@media (min-width: 48em) {
+  .galeria__grid { grid-template-columns: 3fr 2fr; }
+  .galeria__item--grande { grid-row: span 2; grid-template-rows: 1fr auto; }
+  .galeria__item--grande img { height: 100%; aspect-ratio: auto; }
+}
+
+/* processo: passos numerados com um fio em cima */
+.passos { display: grid; gap: var(--space-7) var(--space-6); counter-reset: none; }
+.passo { display: grid; gap: var(--space-3); align-content: start; padding-top: var(--space-5); border-top: 1px solid var(--color-rule); }
+.passo .numeral { font-size: var(--step-2); color: var(--color-accent); }
+.passo p { color: var(--color-muted); }
+@media (min-width: 40em) { .passos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 64em) { .passos:not(.passos--lista) { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.processo__foto img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius-lg); }
+
+/* ciclone em 3D: palco a esquerda, explicacao a direita */
+.ciclone { background: var(--color-surface); }
+.ciclone__grid { display: grid; gap: var(--space-7); align-items: center; }
+.ciclone__palco { position: relative; aspect-ratio: 7 / 8; max-height: 40rem; width: 100%; margin-inline: auto; }
+.ciclone__poster, .ciclone__tela { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; border-radius: var(--radius-lg); }
+.ciclone__tela { cursor: grab; touch-action: pan-y; }
+.ciclone__tela:active { cursor: grabbing; }
+.ciclone__passos { display: grid; gap: var(--space-5); }
+.ciclone__passos li { display: grid; grid-template-columns: 2.5rem 1fr; gap: var(--space-3); align-items: baseline; }
+.ciclone__passos .numeral { font-size: var(--step-2); color: var(--color-accent); }
+.ciclone__legenda { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); font-size: var(--step--1); color: var(--color-muted); }
+.ponto { width: 0.75rem; height: 0.75rem; border-radius: var(--radius-pill); display: inline-block; }
+.ponto--po { background: var(--color-muted); }
+.ponto--ar { background: var(--color-accent); margin-left: var(--space-3); }
+.btn-ciclone {
+  min-height: 2.75rem; padding: var(--space-2) var(--space-5); border-radius: var(--radius-pill);
+  background: var(--color-bg); border: 1px solid var(--color-rule); transition: border-color 200ms ease, color 200ms ease;
+}
+.btn-ciclone:hover, .btn-ciclone[aria-pressed="true"] { border-color: var(--color-accent); color: var(--color-accent); }
+@media (min-width: 56em) { .ciclone__grid { grid-template-columns: 6fr 5fr; gap: var(--space-9); } }
+
+/* equipamentos: lista com foto, nome e uma frase, fio entre os itens */
+.equip { display: grid; gap: var(--space-7) var(--space-8); }
+.equip__item { display: grid; gap: var(--space-4); align-content: start; }
+.equip__item img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; transition: transform 400ms ease; }
+.equip__item:hover img { transform: translateY(calc(-1 * var(--space-1))); }
+.equip__item p { color: var(--color-muted); }
+@media (min-width: 48em) { .equip { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* pedido: lista simples com marcador azul */
+.lista { display: grid; gap: var(--space-3); }
+.lista li { display: grid; grid-template-columns: 1.5rem 1fr; }
+.lista li::before { content: ""; width: 0.5rem; height: 0.5rem; margin-top: 0.55em; border-radius: var(--radius-pill); background: var(--color-accent); }
+
+/* location: location-split-map */
+.mapa img { width: 100%; border-radius: var(--radius-lg); }
+.mapa { margin: 0; }
+
+/* chamada final: titulo grande de um lado, texto e botao do outro */
+.chamada { background: var(--color-text); color: var(--color-bg); }
+.chamada__grid { display: grid; gap: var(--space-6); align-items: end; }
+.chamada h2 { font-size: var(--step-4); max-width: 18ch; }
+.chamada p { color: var(--color-surface); }
+.chamada .btn--primary { background: var(--color-bg); color: var(--color-accent); }
+.chamada .btn--primary:hover { background: var(--color-surface); opacity: 1; }
+@media (min-width: 56em) { .chamada__grid { grid-template-columns: 3fr 2fr; } }
+
+/* contact: contact-form-split, formulario que abre o e-mail e os dados da fabrica */
+.contato__grid { display: grid; gap: var(--space-8); align-items: start; }
+.topo--curto { padding-bottom: 0; }
+.topo--curto h1 { font-size: var(--step-4); }
+.contato__form { max-width: 40rem; }
+.campos { display: grid; gap: var(--space-4); }
+@media (min-width: 40em) { .campos { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.field select {
+  width: 100%; min-height: 3rem; padding: var(--space-3) var(--space-4);
+  background: var(--color-bg); border: 1px solid var(--color-rule); border-radius: var(--radius-md);
+}
+.field input::placeholder, .field textarea::placeholder { color: var(--color-muted); }
+.contato__links a, .contato__lugar { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 2.75rem; }
+.contato__links a { text-decoration: none; transition: color 200ms ease; }
+.contato__links a:hover { color: var(--color-accent); text-decoration: underline; }
+.contato__lugar { color: var(--color-muted); }
+@media (min-width: 56em) {
+  .contato__grid { grid-template-columns: 7fr 4fr; gap: var(--space-9); }
+  .contato__fatos { padding-top: var(--space-8); }
+}
+
+/* rodape em tres colunas */
+.rodape { display: grid; gap: var(--space-6); }
+.site-footer .brand { font-size: var(--step-0); }
+@media (min-width: 48em) { .rodape { grid-template-columns: 2fr 3fr 2fr; } }
+
+/* Links de texto */
+.btn--link { transition: color 200ms ease; }
+.btn--link:hover { color: var(--color-accent); }
+.btn .icon { transition: transform 200ms ease; }
+.btn:hover .icon { transform: translateX(var(--space-1)); }
+
+/* Movimento: um unico bloco de keyframes. Reveal no scroll (so CSS, so onde ha
+   suporte) e a seta do heroi descendo; nada disso roda com movimento reduzido. */
+@keyframes surgir { from { opacity: 0; transform: translateY(var(--desloca, var(--space-6))); } }
+@media (prefers-reduced-motion: no-preference) {
+  .hero__seta svg { --desloca: calc(-1 * var(--space-3)); animation: surgir 1.8s ease-out infinite; }
+  @supports (animation-timeline: view()) {
+    .reveal { animation: surgir linear both; animation-timeline: view(); animation-range: entry 0% entry 35%; }
+  }
+}

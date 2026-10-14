@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 640" width="560" height="640" font-family="Inter, system-ui, sans-serif">
+  <rect width="560" height="640" rx="24" fill="#FFFFFF"/>
+  <g fill="#C9CFD5" stroke="#7C838A" stroke-width="2">
+    <path d="M180 160h200v140l-80 220h-40l-80-220z"/>
+    <path d="M60 172h130v56H60z"/>
+    <path d="M238 60h84v100h-84z"/>
+    <path d="M262 520h36v44h-36z"/>
+  </g>
+  <path d="M180 160h200M180 300h200" stroke="#1F5C99" stroke-width="5"/>
+  <path d="M238 60h84" stroke="#1F5C99" stroke-width="5"/>
+  <g stroke="#50565C" stroke-width="7" stroke-linecap="round"><path d="M200 300v300M360 300v300"/></g>
+  <path d="M238 160v70M322 160v70" stroke="#7C838A" stroke-width="2" stroke-dasharray="6 6"/>
+  <g fill="none" stroke="#7A6450" stroke-width="4" stroke-linecap="round">
+    <path d="M20 200h150"/>
+    <path d="M190 200c120 0 180 20 170 50s-170 20-170 50 150 30 140 60-120 30-110 60 70 40 60 70-30 20-20 40"/>
+    <path d="M280 540v70"/>
+  </g>
+  <path d="M164 192l14 8-14 8zM272 600l8 14 8-14z" fill="#7A6450"/>
+  <g fill="none" stroke="#1F5C99" stroke-width="5" stroke-linecap="round"><path d="M280 470V20"/></g>
+  <path d="M270 32l10-18 10 18z" fill="#1F5C99"/>
+  <g font-size="18" font-weight="600" fill="#FFFFFF">
+    <circle cx="40" cy="160" r="16" fill="#1F5C99"/><text x="34" y="166">1</text>
+    <circle cx="420" cy="380" r="16" fill="#1F5C99"/><text x="414" y="386">2</text>
+    <circle cx="330" cy="600" r="16" fill="#1F5C99"/><text x="324" y="606">3</text>
+  </g>
+  <g font-size="15" fill="#50565C"><text x="440" y="385">pó desce</text><text x="352" y="605">descarga</text><text x="300" y="30">ar limpo</text><text x="62" y="164">ar sujo</text></g>
+</svg>
