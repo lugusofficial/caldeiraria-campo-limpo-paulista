@@ -176,12 +176,19 @@
 .btn .icon { transition: transform 200ms ease; }
 .btn:hover .icon { transform: translateX(var(--space-1)); }
 
-/* Movimento: um unico bloco de keyframes. Reveal no scroll (so CSS, so onde ha
-   suporte) e a seta do heroi descendo; nada disso roda com movimento reduzido. */
+/* Movimento: um unico bloco de keyframes (surgir). A pagina entra com fade, o texto do heroi
+   sobe em sequencia, cada bloco .reveal aparece ao rolar (js/transicoes.js marca e escalona) e
+   a pagina some com fade antes de abrir outra. Nada disso roda com movimento reduzido. */
 @keyframes surgir { from { opacity: 0; transform: translateY(var(--desloca, var(--space-6))); } }
+.btn:hover { transform: translateY(-2px); }
 @media (prefers-reduced-motion: no-preference) {
+  body { --desloca: 0px; animation: surgir 450ms ease-out both; transition: opacity 240ms ease; }
+  body.is-saindo { opacity: 0; }
+  .hero__text > *, .topo__texto > *, .topo__foto { --desloca: var(--space-5); animation: surgir 900ms cubic-bezier(.2, .8, .2, 1) both; }
+  .hero__text > :nth-child(2), .topo__texto > :nth-child(2) { animation-delay: 120ms; }
+  .hero__text > :nth-child(3), .topo__texto > :nth-child(3) { animation-delay: 240ms; }
+  .hero__text > :nth-child(4), .topo__foto { animation-delay: 360ms; }
   .hero__seta svg { --desloca: calc(-1 * var(--space-3)); animation: surgir 1.8s ease-out infinite; }
-  @supports (animation-timeline: view()) {
-    .reveal { animation: surgir linear both; animation-timeline: view(); animation-range: entry 0% entry 35%; }
-  }
+  .js-reveal [data-reveal] { opacity: 0; transform: translateY(var(--space-6)); transition: opacity 800ms ease, transform 800ms cubic-bezier(.2, .8, .2, 1); }
+  .js-reveal [data-reveal].is-visible { opacity: 1; transform: none; }
 }
